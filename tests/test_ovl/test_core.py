@@ -3,9 +3,9 @@
 import numpy as np
 import pytest
 
-from dimer_ovl.config import DimerSystem
-from dimer_ovl.ovl.core import ovl_from_counts, ovl_from_hist_h5
-from dimer_ovl.ovl.aggregation import (
+from coop_stat.config import DimerSystem
+from coop_stat.ovl.core import ovl_from_counts, ovl_from_hist_h5
+from coop_stat.ovl.aggregation import (
     bucket_dataset_name,
     build_means_dict,
     compute_block_aware_mean,

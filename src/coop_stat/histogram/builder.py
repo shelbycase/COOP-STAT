@@ -15,13 +15,13 @@ from typing import Dict, List, Optional, Sequence, Tuple
 
 import numpy as np
 
-from dimer_ovl.histogram.indexing import (
+from coop_stat.histogram.indexing import (
     build_resid_aware_index,
     canonical_size,
     get_canonical_index,
 )
-from dimer_ovl.io.h5 import pick_3d_dataset, read_resids
-from dimer_ovl.tags import Tag
+from coop_stat.io.h5 import pick_3d_dataset, read_resids
+from coop_stat.tags import Tag
 
 
 # ── Pass 1: edge computation ─────────────────────────────────────────

@@ -14,8 +14,8 @@ import h5py
 import numpy as np
 import pytest
 
-from dimer_ovl.config import DimerSystem, lc8_system
-from dimer_ovl.tags import Tag, parse_tag
+from coop_stat.config import DimerSystem, lc8_system
+from coop_stat.tags import Tag, parse_tag
 
 
 # ── System fixtures ──────────────────────────────────────────────────

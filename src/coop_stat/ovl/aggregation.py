@@ -17,7 +17,7 @@ from typing import Any, Dict, List, Optional, Tuple
 
 import numpy as np
 
-from dimer_ovl.config import DimerSystem
+from coop_stat.config import DimerSystem
 
 
 def compute_block_aware_mean(

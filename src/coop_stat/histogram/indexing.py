@@ -18,7 +18,7 @@ from typing import Optional, Tuple
 
 import numpy as np
 
-from dimer_ovl.tags import Tag
+from coop_stat.tags import Tag
 
 
 # ── public API ───────────────────────────────────────────────────────
@@ -56,7 +56,7 @@ def get_canonical_index(
         True if resid-aware method was used.
     """
     import h5py
-    from dimer_ovl.io.h5 import pick_3d_dataset, read_resids
+    from coop_stat.io.h5 import pick_3d_dataset, read_resids
     dist_resids = read_resids(dist_h5_path, resid_dset)
 
     with h5py.File(dist_h5_path, "r") as h5:

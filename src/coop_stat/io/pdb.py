@@ -7,7 +7,7 @@ from typing import List, Optional
 
 import numpy as np
 
-from dimer_ovl.config import DimerSystem
+from coop_stat.config import DimerSystem
 
 
 def pdb_to_h5_index(line: str, system: DimerSystem) -> Optional[int]:

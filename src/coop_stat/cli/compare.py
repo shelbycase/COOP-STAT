@@ -15,25 +15,25 @@ from typing import Dict, List, Optional, Set, Tuple
 
 import numpy as np
 
-from dimer_ovl.compare.extraction import (
+from coop_stat.compare.extraction import (
     extract_values_for_pair,
     smart_mean,
 )
-from dimer_ovl.compare.output import (
+from coop_stat.compare.output import (
     write_emit_stats_tsv,
     write_stat_sign_pdb,
     write_stat_sign_txt,
 )
-from dimer_ovl.compare.statistics import (
+from coop_stat.compare.statistics import (
     compute_pair_stats,
     compute_stat_sign_weights,
     ks_pvalue,
 )
-from dimer_ovl.config import DimerSystem, lc8_system
-from dimer_ovl.io.h5 import load_ovl_cross, load_ovl_intra
-from dimer_ovl.compare.extraction import is_dimer_key
-from dimer_ovl.tags import Tag, dd_sym_applies, parse_tag
-from dimer_ovl.topology import (
+from coop_stat.config import DimerSystem, lc8_system
+from coop_stat.io.h5 import load_ovl_cross, load_ovl_intra
+from coop_stat.compare.extraction import is_dimer_key
+from coop_stat.tags import Tag, dd_sym_applies, parse_tag
+from coop_stat.topology import (
     matched_binding_window,
     matched_client_for_comparison,
     window_roles,
@@ -176,7 +176,7 @@ def _read_pair_file(path: Optional[str]) -> Optional[Set[Tuple[int, int]]]:
 
 def _expanded_labels(ovl_dict, system, dd_sym, matched_client):
     """Get column labels for per-pair TSV values."""
-    from dimer_ovl.compare.extraction import (
+    from coop_stat.compare.extraction import (
         is_dimer_key, is_intra_same_rep, client_match, rep_pair_from_key,
     )
     if ovl_dict is None:

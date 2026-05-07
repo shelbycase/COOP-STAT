@@ -18,8 +18,8 @@ from typing import Dict, List, Optional
 
 import numpy as np
 
-from dimer_ovl.config import DimerSystem
-from dimer_ovl.io.pdb import write_bfactor_pdb
+from coop_stat.config import DimerSystem
+from coop_stat.io.pdb import write_bfactor_pdb
 
 
 def write_stat_sign_pdb(

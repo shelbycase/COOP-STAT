@@ -14,9 +14,9 @@ from typing import Dict, List, Optional, Tuple
 
 import numpy as np
 
-from dimer_ovl.histogram.indexing import identify_ligand_atoms
-from dimer_ovl.io.h5 import pick_3d_dataset, read_resids
-from dimer_ovl.tags import Tag
+from coop_stat.histogram.indexing import identify_ligand_atoms
+from coop_stat.io.h5 import pick_3d_dataset, read_resids
+from coop_stat.tags import Tag
 
 
 def pre_check_resids(

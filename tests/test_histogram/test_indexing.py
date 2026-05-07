@@ -4,13 +4,13 @@ import h5py
 import numpy as np
 import pytest
 
-from dimer_ovl.histogram.indexing import (
+from coop_stat.histogram.indexing import (
     build_arithmetic_index,
     build_resid_aware_index,
     canonical_size,
     identify_ligand_atoms,
 )
-from dimer_ovl.tags import parse_tag
+from coop_stat.tags import parse_tag
 
 
 class TestCanonicalSize:

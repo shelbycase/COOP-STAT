@@ -75,7 +75,7 @@ def ovl_from_hist_h5(
 def _load_hist_view(path, counts_dset, edges_dset, start, stop):
     """Load histogram counts and edges, sliced to [start:stop, start:stop]."""
     import h5py
-    from dimer_ovl.io.h5 import pick_3d_dataset
+    from coop_stat.io.h5 import pick_3d_dataset
     with h5py.File(path, "r") as h5:
         # Fall back to first 3-D dataset if named one is missing
         if counts_dset not in h5:

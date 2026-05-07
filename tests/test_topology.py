@@ -1,11 +1,11 @@
-"""Tests for dimer_ovl.config (DimerSystem) and dimer_ovl.topology."""
+"""Tests for coop_stat.config (DimerSystem) and coop_stat.topology."""
 
 import numpy as np
 import pytest
 
-from dimer_ovl.config import DimerSystem, lc8_system
-from dimer_ovl.tags import parse_tag
-from dimer_ovl.topology import (
+from coop_stat.config import DimerSystem, lc8_system
+from coop_stat.tags import parse_tag
+from coop_stat.topology import (
     is_dimer_pair,
     matched_binding_window,
     matched_client_for_comparison,

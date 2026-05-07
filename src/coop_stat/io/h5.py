@@ -100,7 +100,7 @@ def translate_view_label(label):
 
 def normalize_cross_keys(raw, tag_ref, tag_cmp):
     """Normalize cross OVL dict keys: translate view labels, reorder so cmp comes first."""
-    from dimer_ovl.compare.extraction import parse_pair_key
+    from coop_stat.compare.extraction import parse_pair_key
     out = {}
     for k, M in raw.items():
         p = parse_pair_key(k)
@@ -118,7 +118,7 @@ def normalize_cross_keys(raw, tag_ref, tag_cmp):
 
 def normalize_intra_keys(raw, tag):
     """Normalize intra OVL dict keys: translate view labels, filter to matching tag."""
-    from dimer_ovl.compare.extraction import parse_pair_key
+    from coop_stat.compare.extraction import parse_pair_key
     out = {}
     for k, M in raw.items():
         p = parse_pair_key(k)
@@ -154,7 +154,7 @@ def load_ovl_cross(tag_ref, tag_cmp, ovl_dir):
 def load_ovl_intra(tag, tag_ref, tag_cmp, ovl_dir):
     """Load and normalize intra OVL dict, searching standard filename candidates."""
     ovl_dir = Path(ovl_dir)
-    from dimer_ovl.tags import parse_tag
+    from coop_stat.tags import parse_tag
     info = parse_tag(tag)
     core = info.core if info.kind == "single" else str(tag)
     candidates = [

@@ -1,4 +1,9 @@
-# dimer-ovl
+# COOP-STAT
+🛠️ COOP-STAT is currently under construction 🛠️ 
+As of May 7, 2026, files are operational but still under review for bugs and testing. 
+
+COOP-STAT (COOPerativity STatistical Analysis Toolkit) is an open-source pipeline for detecting and quantifying cooperative binding behavior in homodimeric protein–peptide systems from MD ensembles. Given singly- and doubly-bound trajectories, COOP-STAT compares internal-coordinate distributions site-by-site using similarity metrics (e.g., the Overlapping Coefficient) and the two-sample Kolmogorov–Smirnov test, disentangling sampling noise (replicate-vs-replicate) from genuine ensemble differences (species-vs-species). The framework is alignment-free, requires no assumption of large conformational change, and was developed on LC8–client peptide ensembles but generalizes to other homodimeric cooperative systems.
+
 
 OVL-based statistical comparison of symmetric homodimer MD simulations.
 

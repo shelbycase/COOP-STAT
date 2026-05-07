@@ -1,8 +1,8 @@
-"""Tests for dimer_ovl.tags — tag parsing, normalization, metadata."""
+"""Tests for coop_stat.tags — tag parsing, normalization, metadata."""
 
 import pytest
 
-from dimer_ovl.tags import (
+from coop_stat.tags import (
     BindingState,
     SymClass,
     Tag,

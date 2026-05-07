@@ -3,7 +3,7 @@
 import numpy as np
 import pytest
 
-from dimer_ovl.compare.extraction import (
+from coop_stat.compare.extraction import (
     client_from_view_obj,
     client_match,
     extract_values_for_pair,
@@ -13,8 +13,8 @@ from dimer_ovl.compare.extraction import (
     rep_pair_from_key,
     smart_mean,
 )
-from dimer_ovl.compare.statistics import ks_pvalue, compute_pair_stats
-from dimer_ovl.config import DimerSystem
+from coop_stat.compare.statistics import ks_pvalue, compute_pair_stats
+from coop_stat.config import DimerSystem
 
 
 # ── Key parsing ──────────────────────────────────────────────────────

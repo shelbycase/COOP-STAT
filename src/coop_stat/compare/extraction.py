@@ -47,7 +47,7 @@ from typing import Dict, List, Optional, Tuple
 
 import numpy as np
 
-from dimer_ovl.config import DimerSystem
+from coop_stat.config import DimerSystem
 
 
 # ── OVL key classification ───────────────────────────────────────────

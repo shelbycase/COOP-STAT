@@ -18,10 +18,10 @@ from typing import Dict, List, Optional, Tuple
 import numpy as np
 from scipy.stats import ks_2samp as _scipy_ks_2samp
 
-from dimer_ovl.compare.extraction import extract_values_for_pair
-from dimer_ovl.config import DimerSystem
+from coop_stat.compare.extraction import extract_values_for_pair
+from coop_stat.config import DimerSystem
 
-from dimer_ovl.compare.extraction import extract_labeled_values_for_pair
+from coop_stat.compare.extraction import extract_labeled_values_for_pair
 
 # ── KS compatibility ─────────────────────────────────────────────────
 # version check, dependency sanity check

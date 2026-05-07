@@ -10,9 +10,9 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
-from dimer_ovl.config import DimerSystem
-from dimer_ovl.io.gro import gro_sequence_for_range, parse_ligand_ranges
-from dimer_ovl.tags import BindingState, SymClass, Tag
+from coop_stat.config import DimerSystem
+from coop_stat.io.gro import gro_sequence_for_range, parse_ligand_ranges
+from coop_stat.tags import BindingState, SymClass, Tag
 
 
 def pair_equivalents(

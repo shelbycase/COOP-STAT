@@ -17,11 +17,11 @@ from typing import Dict, List, Optional, Tuple
 
 import numpy as np
 
-from dimer_ovl.config import DimerSystem, lc8_system
-from dimer_ovl.io.h5 import pick_3d_dataset, write_datasets
-from dimer_ovl.ovl.aggregation import build_means_dict, compute_block_aware_mean
-from dimer_ovl.ovl.core import ovl_from_hist_h5
-from dimer_ovl.tags import Tag, parse_tag
+from coop_stat.config import DimerSystem, lc8_system
+from coop_stat.io.h5 import pick_3d_dataset, write_datasets
+from coop_stat.ovl.aggregation import build_means_dict, compute_block_aware_mean
+from coop_stat.ovl.core import ovl_from_hist_h5
+from coop_stat.tags import Tag, parse_tag
 
 
 # ── CLI ──────────────────────────────────────────────────────────────
@@ -268,7 +268,7 @@ def main():
 
 def _probe_matrix_n(objs, hist_dset):
     import h5py
-    from dimer_ovl.io.h5 import pick_3d_dataset
+    from coop_stat.io.h5 import pick_3d_dataset
     for obj in objs:
         with h5py.File(obj["path"], "r") as h5:
             return h5[pick_3d_dataset(h5, preferred=hist_dset)].shape[0]

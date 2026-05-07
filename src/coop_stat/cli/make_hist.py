@@ -7,17 +7,17 @@ import sys
 from pathlib import Path
 from typing import List
 
-from dimer_ovl.config import DimerSystem, lc8_system
-from dimer_ovl.histogram.builder import (
+from coop_stat.config import DimerSystem, lc8_system
+from coop_stat.histogram.builder import (
     build_edges,
     build_histogram,
     compute_pairwise_minmax,
     write_edges_h5,
     write_histogram_h5,
 )
-from dimer_ovl.histogram.indexing import canonical_size
-from dimer_ovl.histogram.sanity import post_check_histogram, pre_check_resids
-from dimer_ovl.tags import parse_tag, Tag
+from coop_stat.histogram.indexing import canonical_size
+from coop_stat.histogram.sanity import post_check_histogram, pre_check_resids
+from coop_stat.tags import parse_tag, Tag
 
 
 def _cli() -> argparse.Namespace:
@@ -75,7 +75,7 @@ def main():
 
     # Determine canonical size
     import h5py
-    from dimer_ovl.io.h5 import pick_3d_dataset
+    from coop_stat.io.h5 import pick_3d_dataset
     sizes = set()
     for tag in tags:
         for r in reps:
