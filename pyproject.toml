@@ -3,7 +3,7 @@ requires = ["setuptools>=68.0", "setuptools-scm"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "dimer-ovl"
+name = "coop_stat"
 version = "0.1.0"
 description = "OVL-based statistical comparison of symmetric homodimer MD simulations"
 requires-python = ">=3.9"
@@ -21,9 +21,9 @@ dev = [
 ]
 
 [project.scripts]
-dimer-hist = "dimer_ovl.cli.make_hist:main"
-dimer-ovl = "dimer_ovl.cli.calc_ovl:main"
-dimer-compare = "dimer_ovl.cli.compare:main"
+dimer-hist = "coop_stat.cli.make_hist:main"
+dimer-ovl = "coop_stat.cli.calc_ovl:main"
+dimer-compare = "coop_stat.cli.compare:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
