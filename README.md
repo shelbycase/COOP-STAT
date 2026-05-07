@@ -2,7 +2,7 @@
 🛠️ COOP-STAT is under construction 🛠️ 
 As of May 7, 2026, files are operational, but debugging and testing is still underway. 
 
-COOP-STAT (COOPerativity STatistical Analysis Toolkit) is an open-source pipeline for detecting and quantifying cooperative binding behavior in homodimeric protein–peptide systems from MD ensembles. Given singly- and doubly-bound trajectories, COOP-STAT compares internal-coordinate distributions (namely inter-residue distances) site-by-site using similarity metrics (e.g., the Overlapping Coefficient) and the two-sample Kolmogorov–Smirnov test, disentangling sampling noise (replicate-vs-replicate) from genuine ensemble differences (species-vs-species). The framework is alignment-free, designed for nuanced conformational changes, and was developed on LC8–client peptide ensembles but aims to be generalize toward other homodimeric cooperative systems.
+COOP-STAT (COOPerativity STatistical Analysis Toolkit) is an open-source pipeline for detecting and quantifying cooperative binding behavior in homodimeric protein–peptide systems from MD ensembles. Given singly and doubly bound MD trajectories, COOP-STAT compares internal-coordinate distributions (namely inter-residue distances) site-by-site using similarity metrics (e.g., the Overlapping Coefficient) and the two-sample Kolmogorov–Smirnov test, disentangling sampling noise (replicate-vs-replicate) from genuine ensemble differences (species-vs-species). The framework is alignment-free, designed for nuanced conformational changes, and was developed on LC8–client peptide ensembles but aims to be generalize toward other homodimeric cooperative systems.
 
 OVL-based statistical comparison of symmetric homodimer MD simulations.
 
@@ -143,7 +143,8 @@ src/dimer_ovl/
 **`DimerSystem` replaces globals.** The original scripts used module-level
 constants (`DIMER_N=178`, `BINDING_WINDOW_1`, `PEPTIDE_SEQS`, etc.).
 Now these are fields on a dataclass that gets passed through
-the pipeline. This makes the package work for any symmetric homodimer.
+the pipeline. This makes the package generalizable for any symmetric homodimer.
+**This is still under testing.**
 
 **Tags are structured objects.** Instead of passing raw strings and
 re-parsing everywhere, `parse_tag()` returns a `Tag` dataclass with
@@ -151,13 +152,13 @@ re-parsing everywhere, `parse_tag()` returns a `Tag` dataclass with
 
 **Pure functions over methods.** Core computations (`ovl_from_counts`,
 `ks_pvalue`, `extract_values_for_pair`) are free functions that take
-data + config as arguments. Easy to test, easy to compose.
+data + config as arguments. 
 
 **I/O separated from logic.** H5/GRO/PDB reading is in `dimer_ovl.io`;
 computation modules never touch the filesystem directly (they receive
 arrays).
 
-## Testing
+## Testing | Currently Under Review
 
 ```bash
 pytest                    # run all tests
@@ -169,7 +170,7 @@ pytest --cov=dimer_ovl    # with coverage report
 
 ### Test categories
 
-- **Unit tests** (`test_tags.py`, `test_topology.py`): Pure logic, no I/O.
+- **Unit tests** (`test_tags.py`, `test_topology.py`): 
 - **Component tests** (`test_histogram/`, `test_ovl/`, `test_compare/`):
   Use synthetic H5 fixtures from `conftest.py`.
 - **Integration tests**: Wire together multiple stages with synthetic data.
