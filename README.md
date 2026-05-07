@@ -1,4 +1,7 @@
 # COOP-STAT
+🛠️ COOP-STAT is under construction 🛠️ 
+As of May 7, 2026, files are operational, but debugging and testing is still underway. 
+
 COOP-STAT (COOPerativity STatistical Analysis Toolkit) is an open-source pipeline for detecting and quantifying cooperative binding behavior in homodimeric protein–peptide systems from MD ensembles. Given singly- and doubly-bound trajectories, COOP-STAT compares internal-coordinate distributions (namely inter-residue distances) site-by-site using similarity metrics (e.g., the Overlapping Coefficient) and the two-sample Kolmogorov–Smirnov test, disentangling sampling noise (replicate-vs-replicate) from genuine ensemble differences (species-vs-species). The framework is alignment-free, designed for nuanced conformational changes, and was developed on LC8–client peptide ensembles but aims to be generalize toward other homodimeric cooperative systems.
 
 OVL-based statistical comparison of symmetric homodimer MD simulations.
