@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "coop_stat"
 version = "0.1.0"
-description = "OVL-based statistical comparison of symmetric homodimer MD simulations"
+description = "OVL-based 2-Sample KS statistical comparison of symmetric homodimer MD simulations"
 requires-python = ">=3.9"
 dependencies = [
     "numpy>=1.22",
