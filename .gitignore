@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+*.egg-info/
+dist/
+build/
+.eggs/
+*.h5
+*.xtc
+*.gro
+*.pdb
+.ipynb_checkpoints/
