@@ -1,4 +1,4 @@
-# COOP-STAT
+# COOP-STAT 🦆
 🛠️ COOP-STAT is under construction 🛠️ 
 As of May 7, 2026, files are operational, but debugging and testing is still underway. 
 
