@@ -46,7 +46,6 @@ system = DimerSystem(
 
 **Tags encode system identity and binding state:**
 Naming convention follows: {Peptide Name}{Bound State Abbrev.}{Peptide Length} except for mixed client peptide systems, which follows: {Peptide 1 Name}m{Peptide Length}_{Peptide 2 Name}m{Peptide Length}
-Distance Matrices that are brought in should be in the 3D format: (protein+peptide1+peptide2)x(protein+peptide1+peptide2)x(no. trajectory frames)
 
 ```python
 from dimer_ovl.tags import parse_tag, dd_sym_applies
@@ -61,6 +60,7 @@ dd_sym_applies(ref, cmp)  # True (at least one is d_homo)
 ```
 
 ### 3. Build histograms (from distance H5s)
+Distance Matrices that are brought in should be in the 3D format: (protein+peptide1+peptide2)x(protein+peptide1+peptide2)x(no. trajectory frames)
 
 ```python
 from dimer_ovl.histogram.builder import (
