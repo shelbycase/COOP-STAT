@@ -5,8 +5,8 @@ OVL-based statistical comparison of symmetric homodimer MD simulations.
 ## Pipeline overview
 
 ```
-distance H5s ──→ histograms ──→ OVL matrices ──→ statistical comparison
-  (GROMACS)     (dimer-hist)    (dimer-ovl)      (dimer-compare)
+distance H5s ─────────────→ histograms ──→ OVL matrices ──→ statistical comparison
+(Bring your own matrix)     (dimer-hist)    (dimer-ovl)      (dimer-compare)
 ```
 
 Each stage is both a CLI tool and a Python library you can import directly.
