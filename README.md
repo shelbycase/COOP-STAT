@@ -1,17 +1,14 @@
-# COOP-STAT
-🛠️ COOP-STAT is currently under construction 🛠️ 
-As of May 7, 2026, files are operational but still under review for bugs and testing. 
+# COOP-STAT 🦆
+🛠️ COOP-STAT is under construction 🛠️ 
+As of May 7, 2026, files are operational, but debugging and testing is still underway. 
 
-COOP-STAT (COOPerativity STatistical Analysis Toolkit) is an open-source pipeline for detecting and quantifying cooperative binding behavior in homodimeric protein–peptide systems from MD ensembles. Given singly- and doubly-bound trajectories, COOP-STAT compares internal-coordinate distributions site-by-site using similarity metrics (e.g., the Overlapping Coefficient) and the two-sample Kolmogorov–Smirnov test, disentangling sampling noise (replicate-vs-replicate) from genuine ensemble differences (species-vs-species). The framework is alignment-free, requires no assumption of large conformational change, and was developed on LC8–client peptide ensembles but generalizes to other homodimeric cooperative systems.
-
-
-OVL-based statistical comparison of symmetric homodimer MD simulations.
+COOP-STAT (COOPerativity STatistical Analysis Toolkit) is an open-source pipeline for detecting and quantifying cooperative binding behavior in homodimeric protein–peptide systems from MD ensembles. Given singly and doubly bound MD trajectories, COOP-STAT compares internal-coordinate distributions (namely inter-residue distances) site-by-site using similarity metrics (e.g., the Overlapping Coefficient) and the two-sample Kolmogorov–Smirnov test, disentangling sampling noise (replicate-vs-replicate) from genuine ensemble differences (species-vs-species). The framework is alignment-free, designed for nuanced conformational changes, and was developed on LC8–client peptide ensembles but aims to be generalize toward other homodimeric cooperative systems.
 
 ## Pipeline overview
 
 ```
-distance H5s ──→ histograms ──→ OVL matrices ──→ statistical comparison
-  (GROMACS)     (dimer-hist)    (dimer-ovl)      (dimer-compare)
+distance H5s ─────────────→ histograms ──→ OVL matrices ──→ statistical comparison
+(Bring your own matrix)     (dimer-hist)    (dimer-ovl)      (dimer-compare)
 ```
 
 Each stage is both a CLI tool and a Python library you can import directly.
@@ -19,7 +16,7 @@ Each stage is both a CLI tool and a Python library you can import directly.
 ## Installation
 
 ```bash
-pip install -e ".[dev]"   # editable install with test dependencies
+pip install -e ""   # editable install with test dependencies
 ```
 
 ## Quick start
@@ -40,7 +37,7 @@ system = lc8_system()
 system = DimerSystem(
     chain_length=50,
     peptide_seqs={"LigA": "ACDEFGHIKL", "LigB": "MNPQRSTVWY"},
-    binding_windows_1=[(0, 20), (70, 90)],
+    binding_windows_1=[(0, 20), (70, 90)], #note that cross-monomer pairs are allowed
     binding_windows_2=[(21, 49), (50, 69)],
 )
 ```
@@ -49,6 +46,7 @@ system = DimerSystem(
 
 **Tags encode system identity and binding state:**
 Naming convention follows: {Peptide Name}{Bound State Abbrev.}{Peptide Length} except for mixed client peptide systems, which follows: {Peptide 1 Name}m{Peptide Length}_{Peptide 2 Name}m{Peptide Length}
+Distance Matrices that are brought in should be in the 3D format: (protein+peptide1+peptide2)x(protein+peptide1+peptide2)x(no. trajectory frames)
 
 ```python
 from dimer_ovl.tags import parse_tag, dd_sym_applies
@@ -107,6 +105,7 @@ weights = compute_stat_sign_weights(
     nres, cross_dict, iref_dict, icmp_dict,
     system=system, dd_sym_cross=True,
 )
+# Coming Soon... analysis code for these outputs
 ```
 
 ## Architecture
@@ -123,10 +122,10 @@ src/dimer_ovl/
 ├── histogram/
 │   ├── indexing.py       Resid-aware canonical index construction
 │   ├── builder.py        Edge computation + histogram generation
-│   └── sanity.py         Pre/post sanity checks
+│   └── sanity.py         Pre-/post-analysis sanity checks
 ├── ovl/
 │   ├── core.py           OVL from histogram counts
-│   └── aggregation.py    Block-aware per-bucket DD-deduped means
+│   └── aggregation.py    Block-aware per-bucket Dimer-Dimer (DD)-deduplicated means
 ├── compare/
 │   ├── extraction.py     OVL sample collection (5 KS rules)
 │   ├── statistics.py     KS tests, stat-sign weights
@@ -141,8 +140,9 @@ src/dimer_ovl/
 
 **`DimerSystem` replaces globals.** The original scripts used module-level
 constants (`DIMER_N=178`, `BINDING_WINDOW_1`, `PEPTIDE_SEQS`, etc.).
-Now these are fields on an immutable dataclass that gets passed through
-the pipeline. This makes the package work for any symmetric homodimer.
+Now these are fields on a dataclass that gets passed through
+the pipeline. This makes the package generalizable for any symmetric homodimer.
+**This is still under testing.**
 
 **Tags are structured objects.** Instead of passing raw strings and
 re-parsing everywhere, `parse_tag()` returns a `Tag` dataclass with
@@ -150,13 +150,13 @@ re-parsing everywhere, `parse_tag()` returns a `Tag` dataclass with
 
 **Pure functions over methods.** Core computations (`ovl_from_counts`,
 `ks_pvalue`, `extract_values_for_pair`) are free functions that take
-data + config as arguments. Easy to test, easy to compose.
+data + config as arguments. 
 
 **I/O separated from logic.** H5/GRO/PDB reading is in `dimer_ovl.io`;
 computation modules never touch the filesystem directly (they receive
 arrays).
 
-## Testing
+## Testing | Currently Under Review
 
 ```bash
 pytest                    # run all tests
@@ -168,7 +168,7 @@ pytest --cov=dimer_ovl    # with coverage report
 
 ### Test categories
 
-- **Unit tests** (`test_tags.py`, `test_topology.py`): Pure logic, no I/O.
+- **Unit tests** (`test_tags.py`, `test_topology.py`): 
 - **Component tests** (`test_histogram/`, `test_ovl/`, `test_compare/`):
   Use synthetic H5 fixtures from `conftest.py`.
 - **Integration tests**: Wire together multiple stages with synthetic data.
@@ -185,4 +185,4 @@ The only assumptions are:
 - **Symmetric homodimer**: two identical chains related by C2 rotation.
 - **Equal chain lengths**: chain A and chain B have the same number of residues.
 - **Peptide ligands have highest resids**: in distance H5 files, the 2×peplen
-  atoms with the highest residue IDs are the two bound peptides. This organizes the distance matrix as (protein+peptide+peptide)x(protein+peptide+peptide).
+  atoms with the highest residue IDs are the two bound peptides. This organizes the distance matrix as (protein+peptide1+peptide2)x(protein+peptide1+peptide2).
